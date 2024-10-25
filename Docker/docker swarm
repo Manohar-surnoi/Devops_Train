@@ -1,0 +1,50 @@
+Docker Swarm: 
+
+> Docker swarm is an Orchestration tool that runs on docker nodes. It helps end users in creating and deploying a cluster of Docker nodes
+
+Docker swarm used for
+  a. Decentralized Access
+  b. High Security
+  c. Auto load balancing
+  d. High Scalabilty
+  e. Roll back a task
+
+In Docker swarm, follows Manager Node and Worker Node mechanism
+
+Manager Node: Maintains cluster management tasks
+Worker Node: worker node receive and execute tasks from manager node
+
+Manager Node: 
+ 
+ API: Accepts commands and create service object
+ Orchestator: reconcillation loop that creats tasks for service objects
+ allocation: allocates IP address to tasks
+ dispatcher: asigns tasks to nodes
+ schedular: instructs a worker to run a task
+
+Worker Node: 
+
+ Worker: connects to dispatcher to check for assigned tasks
+ executor: executes tasks assigned to worked node
+
+Docker Swarm commands:
+ 
+ First we have to intiate docker swarm 
+- docker swarm init --advertise-addr <MANAGER-IP> here when we intiate it will create a cluster.(manager node)
+- Adds a node to an existing Swarm as a worker or manager.
+- docker swarm join --token <TOKEN> <MANAGER-IP>:2377
+For leave the nodes:
+- docker swarm leave --force
+Update the docker swarm configuration 
+- docker swarm update --autolock=true
+Creates a new service in swarm
+- docker service create --name web --replicas 5 -p 80:80 nginx
+List the docker services
+- docker service ls
+To know the details of the service:
+- docker service inspect (name of service)
+Remove a service from swarm:
+- docker service rm (name of service)
+Update the service in swarm:
+- docker service update --image nginx:latest (name of service)
+

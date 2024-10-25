@@ -1,0 +1,22 @@
+Docker compose: 
+
+Docker compose is a tool manages containers. It used for defining and running multi container docker applications in a single YAML file 
+
+Docker compose commands:
+ To run the docker-compose file 
+- 'docker-compose up'
+to remove all the containers
+- 'docker-compose down'
+- docker-compose build
+- docker-compose logs
+- docker-compose ps
+- docker-compose version
+- docker-compose port
+- docker-compose top
+- docker-compose kill
+- docker-compose pause
+- docker-compose unpause
+- docker-compose rm
+- docker-compose exec
+- docker-compose run
+- docker-compose pull

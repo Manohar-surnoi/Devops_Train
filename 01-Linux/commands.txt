@@ -1,0 +1,131 @@
+OS and Linux commands:
+
+Different types of OS;
+ 1. Microsoft OS: Paid
+   Dos: Disk Operating System--> CLI/CUI
+   Windows: GUI+CLI Operating System
+ 2. Linux Distributions: Open source--> Linux Kernel is CLI/CUI Operating System
+   Distributers:
+       1. Redhat
+       2. Centos
+       3. Fedora
+       4. Oracle Linux
+       5. AMazon Linux
+       6. Debian
+       7. Ubuntu
+ 3. Unix Distributions: Open Source--> Unix Kernel is CLI/CUI Operating System
+   Distributions:
+        1. IDM AIX
+        2. HP UX 
+        3. Oracle
+        4. BSD(Berkeley Software Distributions)
+ 4. Macos: Paid--> Kernel is GUI/CLI
+
+
+Protocols: 
+ HTTP: Hyper Text Transfer Protocal--> port: 80
+ HTTPS: Hyper Text Transfer Protocal Service--> port: 443
+ SSH: Secure Shell--> port: 22
+
+
+LINUX COMMANDS:
+   sudo -i--> root user--> by default root user ID is "0"
+   ls--> list the files and folders
+   ls -l--> lengthy format
+   ls -lr--> reverse lengthy format
+   ls -ltr--> time reverse, old to new
+   ls -la--> "a"--> hiden content 
+   CRUD--> Create Read Update Delete
+   ">" redirection, delete old content and add new 
+   ">>" append, will not delete only add new
+   "mv"--> rename the file 
+   "stat"--> checking Size of the file
+   mkdir--> make directory/ create empty directory
+   "cd"--> change directory
+   wget--> download files from web
+   curl--> curl is a broder tool for transferring data and interacting with servers
+   touch--> to create new file
+   cat--> displaying file content
+   ".sh"--> extension of shell script
+   vi--> to create and write inside file,  commands inside vi is called "Modes"
+
+VI Modules:
+ 1. esc -r: replace single letter
+ 2. esc -R: replace line
+ 3. esc -o: below line
+ 4. esc -O: above line
+ 5. esc -u: undu
+ 6. esc -p: paste
+ 7. esc -yy: copy
+ 8. esc -dd: delete
+ 9. esc-shift-: %d--> will delete all data
+ 10. esc -gg: begining of line
+ 11. esc -G: end of the line
+ 12. esc-shift-: se nu--> serial numbers
+ 13. esc-shift- : se nonu--> hiding serial numbers
+
+
+
+Procees Management:
+ PS--> Process status-->"currently running process list"
+ Kill--> Terminate
+ Kill -9--> Force Terminate 
+
+
+User Management:[-rw-rw-r--]--> r=4, w=2, x=1 [777, 400]
+ user: The one who created
+ group: whcih group
+ others: otherthan user and group
+ chmod--> changing permissions
+ chown--> can modify user ownership
+ chgrp--> modify group ownership
+ groupadd groupname--> group created
+ useradd -G groupname username--> add user to existing group
+ groupdel groupname--> group deleted
+ userdel username--> delete user
+ 
+
+
+Package Management: 
+ tar xvf filename--> un tar file
+ gzip--> to compress a file
+ rpm--> redhat package manager--> low level and manage individual package
+ yum--> yellow dog utility manager--> High level and manages bulk of packages from repositories
+
+
+Service Management:
+ systemctl start tool name--> to start the tool
+ systemctl status tool name--> checking for status enable or disabled 
+ systemctl stop tool name--> to stop the tool
+ systemctl restart tool name--> to restarting tool
+
+
+Troubleshoot:
+ top--> cpu memory
+ df -h--> hard Disk
+ ps -ef | grep <process name>--> process running status
+ netstat Intp--> ports enable status
+ ping <url address>--> check internet 
+
+
+Vi Editor:
+ i--> Switch to insert mode to start inserting text before the cursor
+ Esc--> Return to normal mode from insert mode
+ Ctrl + f: Move one screen forward
+ Ctrl + b: Move one screen backward
+ q--> quit
+ wq--> write and quit
+ ":/" search from the top of the file
+ ":?" serach from bottom
+ u--> undo
+ yy--> yank/copy
+ dd--> cut
+ p--> paste
+ se nu: Enable serial numbers
+ se nonu: Disable serial numbers
+ 
+# Keranl: Kernal is a most inportant part of Operating System. It allows hardware to talk to the Software.
+Kernal is a heart of OS. It will define CLI/CUI 
+ 
+
+   

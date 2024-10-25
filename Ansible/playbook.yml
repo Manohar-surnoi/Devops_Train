@@ -1,0 +1,34 @@
+---
+hosts: all
+tasks:  
+  -name: install apache
+   yum: 
+     name: httpd
+     state: present
+
+  -name: start apache service
+    service: 
+      name: httpd
+      state: running
+      enabled: yes 
+
+# list of items
+  fruits:
+      - Apple
+      - Orange
+      - Banana
+
+# list of directories
+  Employees: 
+     - name: Manohar
+       age: 28
+       dept: Software
+       
+     - name: Rajan
+       age: 26
+       dept: Hardware
+      
+
+
+
+

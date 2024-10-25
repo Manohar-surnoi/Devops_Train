@@ -1,0 +1,26 @@
+In Jenkins, go to Dashboard--> New Item--> Enter item name--> click pipeline--> Ok
+For building pipeline project we need to have Java, Git and Maven to be installed in the server
+Go to Manage jenkins--> Tools--> Maven--> update Maven credentials
+
+Pipeline script:
+
+pipeline{
+    agent any
+    tools{ 
+        maven 'maven 3.9.8'
+    }
+  
+    stages{
+        stage("git clone"){
+            steps{
+                git branch: 'main', credentialsId: 'Manohar-surnoi', url: 'https://github.com/royal-surnoi/fusionIQ-ai-BE.git'
+            }
+            
+        }
+        stage("maven build"){
+            steps {
+              sh 'mvn -X clean package'
+            }
+        }        
+    }
+}

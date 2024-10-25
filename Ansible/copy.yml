@@ -1,0 +1,49 @@
+---
+ - name: first playbook
+   hosts: all
+   become: yes
+   tasks: 
+       - name: install httpd
+         yum:
+             name: httpd
+             state: present
+       - name: start httpd
+         service:
+              name: httpd
+              state: started
+       - name: copying the files
+         service:
+               src: index.html
+               dest: /var/www/index.html
+       - name: restart server
+         service:
+               name: httpd
+               state: restarted 
+
+# Ansible Roles: Stracture for writing ansible roles
+
+ansible-project/
+│
+├── playbook.yml
+└── roles/
+    └── webserver/
+        ├── tasks/
+        │   └── main.yml
+        ├── handlers/
+        │   └── main.yml
+        ├── templates/
+        │   └── httpd.conf.j2
+        ├── files/
+        │   └── index.html
+        ├── defaults/
+        │   └── main.yml
+        ├── vars/
+        │   └── main.yml
+        └── meta/
+            └── main.yml
+
+
+
+        
+               
+                   

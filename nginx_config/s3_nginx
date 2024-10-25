@@ -1,0 +1,11 @@
+Deploying code using nginx: (Index.html) folder is must..
+ 
+ > We need to install nginx in EC2 server. Once nginx installed, check nginx server in chrome using IP address port 80
+ > We should assign IAM policy (s3 full access for EC2)
+ > We should transfer s3 files into EC2 server using (aws s3 sync s3://hospital-fe /opt); in plcae of hospital-fe, we can give s3 bucket name.
+ > Now we need to move all files to root directory of nginx., ie., (mv /opt/* /usr/share/nginx/html)
+ > We need to move to root directory (cd /usr/share/nginx/html)
+
+Now we can check nginx server using EC2 IP address, then we will get hospital fe site.
+
+for check nginx logs and port and root directory: (cd /etc/nginx) then (cat nginx.conf)

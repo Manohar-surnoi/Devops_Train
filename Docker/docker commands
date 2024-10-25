@@ -1,0 +1,48 @@
+Main topics in Docker:
+ 1. Docker file
+ 2. Docker Images
+ 3. Docker containers
+ 4. Docker volumes
+ 5. Docker Network
+ 6. Docker compose 
+ 7. Docker Swarm
+
+
+["Docker file---build----> Docker Image---run--> Docker container"]
+
+FROM ubuntu:latest
+RUN apt-get update -y && apt-get install -y nginx
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+
+Images: A Docker image is a Snapshot or Blueprint of the libraries and dependencies required inside a container for Running application
+
+ List Images: (docker images) or (docker images ls)
+ Pull Image: docker pull image:tag [docker pull nginx:latest]
+ Build Image: docker build -t image:tag . [docker build -t myimage:latest .]
+ Remove Image: docker rmi image:tag [docker rmi image:latest]
+ push Image: docker push image:tag 
+
+Containers: 
+
+ List Running containers: (docker ps) or (docker container ls)
+ Run container: docker run -d -p 8080:80 nginx:latest 
+ Stop container: docker stop container_id
+ Start container: docker start container_id
+ Remove container: docker rm container_id
+ Execute a command in running container: docker exec -it container _id command [docker exec -it mycontainer bash]
+ View container logs: docker logs container_id
+
+Networks:
+ List Networks: docker network ls
+ create Network: docker network create <network name>
+ remove Network: docker network rm <network name>
+ inspect Network: docker network inspect <network name>
+
+Volumes: Docker volumes are a way to store data outside of your Docker containers so that it persists even if the container is deleted or recreated
+ 
+ List volumes: docker voolum ls
+ create volume: docker volume create <volume_name>
+ Remove volume: docker volume rm <volume_name>
+ inspect volume: docker volume inspect <volume_name>

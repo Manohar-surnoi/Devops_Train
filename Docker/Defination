@@ -1,0 +1,20 @@
+Docker:
+
+ Docker is an Open source platform, used to deplyoing, shipping and running applications in different environments. It also know as Containerization tool which will store docker images.
+
+ These docker images are build using docker files, here dockerfiles are simple text files that contains instructions for building docker image
+  
+VM vs Docker:
+ 
+ VMs provide strong isolation and can run different Operating system but come with higher overhead and slower startup times., VMs run on Hypervisor, its a software layer sits between Hardware and OPs.
+
+ Docker contains offers lightweight and fast isolation within same Operating system, making more efficient amd faster but with less Isolation compared to VMs
+
+Daemon:
+ The Docker daemon is a background process that manages docker objects like Containers, Networks, Images and Volumes. It listens for docker API request and is responsible for all container related actions. The daemon can also communicate with other daemons to manage docker services.
+
+ 
+
+ 
+ 
+ 

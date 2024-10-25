@@ -1,0 +1,16 @@
+Integration of Ansible playbook with Jenkins: Mainly, Integrating jenkins and ansible always allow us to automate the entire lifecycle of our application, from code commit, through build, test and deployment, consistant and reliable..
+  
+  1. code commit (Git)
+  2. build trigger (Maven)
+  3. Testing (Sonarqube)
+  4. Deployment (Ansible)
+  5. Ansible execution
+  6. Monitoring and Feedback 
+
+> firstly we need to create 2 EC2 instances., 1 is for both Jenkins and Ansible server and 2 is for ansible node
+> In 1 server we need to create opt folder and  install java, git, ansible and jenkins in opt 
+> create one ansible iventory and ansible playbook for nginx
+> connect with 2 server using ssh-keygen
+> Go to jenkins web page and install ansible plugin and configure ansible in tools
+> in pipeline syntax, we need to give playbook path and inventory path
+> at Jenkins credentials, we need to give user name as Ec2-user and private key (pem file) to be added..
