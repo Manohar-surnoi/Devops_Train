@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Pod
-metadata:
-  name: my-nginx-pod
-  labels:
-    app: my-nginx
+metadata: 
+  name: pod-demo
+  namespace: manooshop
 spec:
   containers:
-  - name: nginx-container
-    image: nginx:latest
-    
+  - name: nginx-web
+    image: nginx
+    ports:  
+    - containerPort: 80
