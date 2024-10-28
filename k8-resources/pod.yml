@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata: 
   name: pod-demo
-  namespace: manooshop
+  namespace: manoshop
 spec:
   containers:
   - name: nginx-web
