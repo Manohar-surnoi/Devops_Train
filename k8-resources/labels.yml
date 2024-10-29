@@ -1,0 +1,12 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: labels
+  labels:
+    project: manoshop
+    module: backend
+    environment: testing
+spec:
+  containers:
+  - name: nginx
+    image: nginx
