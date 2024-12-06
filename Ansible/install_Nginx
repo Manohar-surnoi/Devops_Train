@@ -17,8 +17,8 @@
       service:
         name: nginx
         enabled: yes
-- name: nginx uninstallation
 
+- name: nginx uninstallation
   hosts: web
   become: true
   tasks:
