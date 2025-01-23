@@ -8,3 +8,15 @@ spec:
     image: nginx
     ports:  
     - containerPort: 80
+
+# Pods vs Containers:
+1. Pods is the smallest deployment unit in Kubernetes
+2. Pods can contain one or many containers
+3. Containers in pod can share same network identity and storage
+4. Pods are useful in sidecar and proxy patterns
+
+# How to go into container:
+kubectl exec -it nginx --bash
+
+
+"Pod -1 can have nginx container and as Pod -2 but in multi container cannot create containers with same name"
