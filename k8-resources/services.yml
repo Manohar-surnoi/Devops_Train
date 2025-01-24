@@ -1,0 +1,23 @@
+kind: services
+apiVersion: v1
+metadata: 
+  name: nginx
+spec:
+  selector:
+    project: Expense
+    module: backend
+    environment: dev
+  ports:
+    - name: nginx-svc-port
+      protocol: TCP
+      port: 80 #service port
+      targetport: 80 #container port
+
+
+What are the different types of services within Kubernetes?
+
+1. Cluster IP Mode---> default: Only for Internal pod to pod communication
+2. Node Port Mode: A port is opened on each worked node/host to acces pod externel 
+3. Load Balancer Mode: 
+
+Cluster Ip is subset of Node port., Node port is subset of Load balancer
