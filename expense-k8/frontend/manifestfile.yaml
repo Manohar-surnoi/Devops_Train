@@ -59,7 +59,7 @@ apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   name: frontend
-  namespace: expense
+  namespace: manoshop
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
