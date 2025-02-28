@@ -13,6 +13,6 @@ resource "aws_instance" "jenkins" {
     Name = "Jenkins-EC2"
   }
   
-  user_data = file("install_jenkins.sh") 
+  user_data = file("cicd-config.sh") 
 
 }
