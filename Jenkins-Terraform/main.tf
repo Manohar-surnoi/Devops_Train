@@ -1,3 +1,19 @@
+# Define the Jenkins-EC2 Instance with Security Group
+resource "aws_instance" "Jenkins-EC2" {
+  ami                    = var.ami
+  instance_type          = var.instance_type
+  key_name               = aws_key_pair.key_pair.key_name
+  vpc_security_group_ids = [aws_security_group.allow_tls.id]
+ 
+  tags = {
+    Name        = var.jenkins_name
+    ManagedBy   = var.managed_by
+  }
+
+  user_data = file("jenkins.sh")  # Path to your Jenkins setup script (optional)
+}
+
+
 # Define the Security Group to allow SSH, HTTP, TLS, and all outbound traffic
 resource "aws_security_group" "allow_tls" {
   name        = "var.security_group_name"
@@ -73,18 +89,5 @@ resource "aws_default_vpc" "default" {
   }
 }
 
-# Define the Jenkins-EC2 Instance with Security Group
-resource "aws_instance" "Jenkins-EC2" {
-  ami                    = var.ami
-  instance_type          = var.instance_type
-  key_name               = aws_key_pair.key_pair.key_name
-  vpc_security_group_ids = [aws_security_group.allow_tls.id]
- 
-  tags = {
-    Name        = var.jenkins_name
-    ManagedBy   = var.managed_by
-  }
 
-  user_data = file("jenkins.sh")  # Path to your Jenkins setup script (optional)
-}
 
