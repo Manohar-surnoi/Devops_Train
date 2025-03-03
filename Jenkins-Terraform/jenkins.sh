@@ -133,7 +133,7 @@ maven_bin_dir="/opt/maven/bin"
 # unset PATH
 
 if [[ ! "$PATH" =~ "/opt/maven/bin" ]]; then
-    export PATH="$PATH:$maven_bin_dir"
+    export export PATH=$PATH:/opt/maven/bin"
 fi
 
 
