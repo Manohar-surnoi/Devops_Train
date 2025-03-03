@@ -20,9 +20,13 @@ Java, Maven, Git, Angular, and Docker are installed within the install_dependenc
 Set up a security group to allow HTTP (port 80), SSH (port 22), Jenkins (port 8080), and SonarQube (port 9000) access.
 Customize server names, security group names, and manage configuration metadata using variables.
 Automatically use the default VPC and default subnet for provisioning the EC2 instance.
+
 Directory Structure
+
 plaintext
+
 Copy
+
 .
 ├── main.tf               # Main Terraform configuration file
 ├── variables.tf          # Variables file to define AWS region, AMI ID, and other parameters
