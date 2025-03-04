@@ -3,7 +3,7 @@
 variable "ami" {
   description = "AMI ID to be used for EC2 instance"
   type        = string
-  default     = "ami-05b10e08d247fb927"
+  default     = "ami-0b03299ddb99998e9"
 }
 
 variable "instance_type" {
@@ -17,18 +17,19 @@ variable "key_pair_name" {
   type        = string
 }
 
-variable "jenkins_name" {
+variable "instance_name" {
   description = "The Name tag for the Jenkins EC2 instance"
-  default     = "Jenkins-EC2"
+  default     = "sonarqube-EC2"
 }
 
 variable "managed_by" {
-  description = "The Managed by tag for the EC2 instance"
+  description = "Managed by information"
+  type        = string
   default     = "Manohar"
 }
 
 variable "security_group_name" {
-  description = "The name tag for the security group"
+  description = "The name of the security group"
   type        = string
   default     = "allow_tls"
 }
