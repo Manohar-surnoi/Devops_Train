@@ -1,9 +1,8 @@
 #!/bin/bash  
 
-
 #################################################
 # Created : Manohar Nandelli
-# Purpose : git,Jenkins,maven,nodejs and angular configuration
+# Purpose : git, Jenkins, Maven, Node.js, and Angular configuration
 #################################################
 
 # Colors
@@ -12,7 +11,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-TIMESTAMP=$(date +FORMAT%-%H-%M-%S)
+TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="/tmp/jenkins_installation_log_$TIMESTAMP.log"
 ID=$(id -u)
 
@@ -20,127 +19,109 @@ echo "script started at $TIMESTAMP" &>> $LOG_FILE
 
 # Validate command
 VALIDATE(){
-    if [ $1 -ne 0 ]
-    then
+    if [ $1 -ne 0 ]; then
         echo -e "$2 process $R FAILED $N"
         exit 1
     else
-        echo -e "$2 process $G SUCCESS $N "
+        echo -e "$2 process $G SUCCESS $N"
     fi
 }
 
 # Check root access to script
-if [ $ID -ne 0 ]
-then
+if [ $ID -ne 0 ]; then
     echo -e "$R Error:: Provide root access to the script $N" 
     exit 1
 fi
 
-echo "--------- wait for a while configuration is in progress --------------- "
+echo "--------- Wait for a while, configuration is in progress --------------- "
 
+# Git installation
 yum list installed git &>> $LOG_FILE
-# install java
-if [ $? -ne 0 ]
-then
-    yum install git -y  &>> $LOG_FILE
-    VALIDATE $? "git Installed and started the service"
+if [ $? -ne 0 ]; then
+    yum install git -y &>> $LOG_FILE
+    VALIDATE $? "Git Installation"
 else
-    echo -e "git already Installed SKIPPING"
+    echo -e "Git already Installed $Y SKIPPING $N"
 fi
 
-echo "git version $(git --version) "
+echo "git version: $(git --version)"
 
+# Java installation
 yum list installed java &>> $LOG_FILE
-# install java
-if [ $? -ne 0 ]
-then
-    yum install java-21-amazon-corretto-devel -y  &>> $LOG_FILE
-    VALIDATE $? "Java-21 Installed and started the service"
+if [ $? -ne 0 ]; then
+    yum install java-21-amazon-corretto-devel -y &>> $LOG_FILE
+    VALIDATE $? "Java-21 Installation"
 else
     echo -e "Java-21 already Installed $Y SKIPPING $N"
 fi
 
-# remove previous downloads and renamed componets
+# Remove previous downloads and renamed components
 rm -rf ap* maven
 
-# add jenkins default to yum package repo
-wget -O /etc/yum.repos.d/jenkins.repo \
-    https://pkg.jenkins.io/redhat-stable/jenkins.repo &>> $LOG_FILE
-VALIDATE $? "add jenkins default to yum package repo"
+# Add Jenkins repository and install Jenkins
+wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo &>> $LOG_FILE
+VALIDATE $? "Added Jenkins repo"
 
-# Import a key file from Jenkins-CI to enable installation from the package
 rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key &>> $LOG_FILE
-VALIDATE $? "Import a key file from Jenkins-CI to enable installation from the package"
+VALIDATE $? "Imported Jenkins CI key"
 
-# Install Jenkins check before install 
-yum list installed Jenkins &>> $LOG_FILE
-if [ $? -ne 0 ]
-then
-    yum install jenkins -y  &>> $LOG_FILE
+yum list installed jenkins &>> $LOG_FILE
+if [ $? -ne 0 ]; then
+    yum install jenkins -y &>> $LOG_FILE
     systemctl enable jenkins &>> $LOG_FILE
     systemctl start jenkins &>> $LOG_FILE
-    VALIDATE $? "Jenkins Installed and started the service"
+    VALIDATE $? "Jenkins Installation and Startup"
 else
-    echo -e "jenkin already Installed $Y SKIPPING $N"
+    echo -e "Jenkins already Installed $Y SKIPPING $N"
 fi
 
+# Node.js installation
 yum list installed nodejs &>> $LOG_FILE
-# install node
-if [ $? -ne 0 ]
-then
-    # remove default nodejs in yum package repo
-    curl -fsSL https://rpm.nodesource.com/setup_20.x |  bash - &>> $LOG_FILE
+if [ $? -ne 0 ]; then
+    curl -fsSL https://rpm.nodesource.com/setup_20.x | bash - &>> $LOG_FILE
     yum install nodejs -y &>> $LOG_FILE
-    VALIDATE $? "nodejs Installed and started the service"
+    VALIDATE $? "Node.js Installation"
 else
-    echo -e "nodejs already Installed $Y SKIPPING $N"
+    echo -e "Node.js already Installed $Y SKIPPING $N"
 fi
 
-# display the versions 
-echo "node version $(node --version)"
-echo "npm version $(npm --version) "
+# Display Node.js and npm versions
+echo "Node version: $(node --version)"
+echo "npm version: $(npm --version)"
 
-
+# Angular installation
 ng version &>> $LOG_FILE
-# install angular
-if [ $? -ne 0 ]
-then
-    # remove default angular in yum package repo
+if [ $? -ne 0 ]; then
     npm install -g @angular/cli@latest &>> $LOG_FILE
-    VALIDATE $? "angular Installed and started the service"
+    VALIDATE $? "Angular Installation"
 else
-    echo -e "angular already Installed  $Y SKIPPING $N"
+    echo -e "Angular already Installed $Y SKIPPING $N"
 fi
 
-# display the versions 
-echo "npm version $(ng version)"
+# Display Angular version
+echo "Angular version: $(ng version)"
 
-# Change directory to app
+# Maven installation
 cd /opt
 
-# Download maven binary
+# Download Maven binary
 wget https://archive.apache.org/dist/maven/maven-3/3.9.8/binaries/apache-maven-3.9.8-bin.tar.gz &>> $LOG_FILE
 
-# efile
+# Extract and install Maven
 tar xvf apache-maven-3.9.8-bin.tar.gz &>> $LOG_FILE
-
 mv apache-maven-3.9.8 maven
 rm -rf apache-maven-3.9.8
-# Path to the Maven bin directory
+
+# Add Maven to PATH
 maven_bin_dir="/opt/maven/bin"
-
-# Append the Maven bin directory to the PATH variable
-# unset PATH
-
 if [[ ! "$PATH" =~ "/opt/maven/bin" ]]; then
-    export export PATH=$PATH:/opt/maven/bin"
+    export PATH="$PATH:$maven_bin_dir"
 fi
-
 
 echo "Maven bin directory added to PATH: $PATH"
 
-# previous directory
+# Return to previous directory
 cd -
 
-# Display maven version
-mvn --version
+# Display Maven version
+echo "Maven version: $(mvn --version)"

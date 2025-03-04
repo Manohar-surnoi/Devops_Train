@@ -73,7 +73,7 @@ resource "aws_security_group" "allow_tls" {
 }
 
 # Define the Jenkins-EC2 Instance with Security Group
-resource "aws_instance" "sonarqube-EC2" {
+resource "aws_instance" "Jenkins-EC2" {
   ami                    = var.ami
   instance_type          = var.instance_type
   key_name               = aws_key_pair.key_pair.key_name
@@ -84,5 +84,5 @@ resource "aws_instance" "sonarqube-EC2" {
     ManagedBy   = var.managed_by
   }
 
-  user_data = file("sonarqube.sh")  # Path to your Jenkins setup script (optional)
+  user_data = file("jenkins.sh")  # Path to your Jenkins setup script (optional)
 }
