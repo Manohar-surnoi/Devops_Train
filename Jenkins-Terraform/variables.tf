@@ -15,7 +15,7 @@ variable "key_pair_name" {
 }
 
 variable "instance_name" {
-  default     = "Jenkins-EC2"
+  default     = "EC2-server"
 }
 
 variable "managed_by" {

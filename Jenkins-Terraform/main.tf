@@ -1,3 +1,18 @@
+# Define the Jenkins-EC2 Instance with Security Group
+resource "aws_instance" "EC2-server" {
+  ami                    = var.ami
+  instance_type          = var.instance_type
+  key_name               = aws_key_pair.key_pair.key_name
+  vpc_security_group_ids = [aws_security_group.allow_tls.id]
+
+  tags = {
+    Name        = var.instance_name
+    ManagedBy   = var.managed_by
+  }
+
+  user_data = file("jenkins.sh")  # Path to your Jenkins setup script (optional)
+}
+
 # TLS Private Key Generation
 resource "tls_private_key" "rsa-4096-example" {
   algorithm = "RSA"
@@ -72,17 +87,3 @@ resource "aws_security_group" "allow_tls" {
   }
 }
 
-# Define the Jenkins-EC2 Instance with Security Group
-resource "aws_instance" "Jenkins-EC2" {
-  ami                    = var.ami
-  instance_type          = var.instance_type
-  key_name               = aws_key_pair.key_pair.key_name
-  vpc_security_group_ids = [aws_security_group.allow_tls.id]
-
-  tags = {
-    Name        = var.instance_name
-    ManagedBy   = var.managed_by
-  }
-
-  user_data = file("jenkins.sh")  # Path to your Jenkins setup script (optional)
-}
